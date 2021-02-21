@@ -8,12 +8,14 @@ class ConfirmMessage extends React.Component {
     }
   render() {  
 return (  
-<div className='popup'>  
+<div className='container popup color'>  
 
-<h1 >Você tem certeza que quer apagar?</h1>  
+    <h1 className="center" >Você tem certeza que quer apagar?</h1>  
+    <div className="center d-grid gap-2 col-6 mx-auto">
 
-    <button className="btn btn-danger " onClick={this.delete(this.props.id)}>Yes</button>  
-    <button className="btn btn-primary" onClick={this.props.closePopup}>No</button>  
+    <button className="btn btn-outline-danger " onClick={this.delete(this.props.id)}>Yes</button>  
+    <button className="btn btn-outline-primary" onClick={this.props.closePopup}>No</button>  
+    </div>
 
 </div>  
 

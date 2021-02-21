@@ -10,7 +10,9 @@
     background-color:#328a59;  
     border-radius: 10px;
   }  
-
+.center{
+  text-align: center;
+}
 .color{
   background-color:darkgray;
 }

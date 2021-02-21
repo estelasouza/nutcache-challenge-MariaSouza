@@ -5,3 +5,6 @@
 .d1{
     display: grid;
 }
+.pad{
+    padding: 10px;
+}
