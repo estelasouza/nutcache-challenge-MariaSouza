@@ -9,22 +9,22 @@ To install all dependencies **back-end** :
 
 go to archive "back"
 
-cd back 
+`cd back `
 
 and run :
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 ***
 
 To install dependencies  **front-end**:
 
 go to archive "front"
 
-cd back 
+`cd front` 
 
 and run :
 
-npm install
+`npm install`
 
 ------------
 
@@ -33,13 +33,14 @@ npm install
 **back-end project**
 
  run: 
-*python3 manage.py runserver*
+
+`python3 manage.py runserver`
 
 
 **front-end project**
-cd front 
 run:
-*npm start*
+
+`npm start`
 
 **test app:**
 run at the same time front-end and back-end 
