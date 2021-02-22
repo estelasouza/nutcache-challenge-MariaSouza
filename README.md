@@ -13,7 +13,7 @@ go to archive "back"
 
 and run :
 
-`pip install -r requirements.txt`
+`pip3 install -r requirements.txt`
 ***
 
 To install dependencies  **front-end**:
@@ -33,6 +33,10 @@ and run :
 **back-end project**
 
  run: 
+
+`python3 manage.py migate`
+
+`python3 manage.py makemigration`
 
 `python3 manage.py runserver`
 
