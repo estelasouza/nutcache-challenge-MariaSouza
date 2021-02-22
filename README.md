@@ -13,7 +13,7 @@ go to archive "back"
 
 and run :
 
-`pip3 install -r requirements.txt`
+`pip3 install -r requirement.txt`
 ***
 
 To install dependencies  **front-end**:
