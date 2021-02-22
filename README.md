@@ -36,7 +36,7 @@ and run :
 
 `python3 manage.py migate`
 
-`python3 manage.py makemigration`
+`python3 manage.py makemigrations`
 
 `python3 manage.py runserver`
 
