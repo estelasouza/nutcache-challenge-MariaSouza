@@ -11,41 +11,41 @@ import ConfirmMessage from '../../component/confirmMessage'
 
 class ListEmployee extends Component {
     state = {
-        employee:   [{name:"estela",email:"estela@teste.com",startDate:"22/19",team:"develop"},
-        {name:"estela",email:"estela@teste.com",startDate:"22/19",team:"develop"},
-        {name:"estela",email:"estela@teste.com",startDate:"22/19",team:"develop"}],
+        employee:   [],
         deleteEmployee:false,
         editEmployee:false,
-        CreateEmployee:false
-    }
+        CreateEmployee:false  ,
+        teste :"testando"
+     }
     async componentDidMount(){
-        // const id =this.props.match.params.id
-        console.log('to aq')
         const  Home  = await NultemployeeService.getAll()
-        console.log(Home.data)
-        // this.setState({empresa:Home.data[0]})
+        
+        await this.setState({employee: Home.data})
+
 
     }
     createEmployeePopup() {  
         this.setState({  
             CreateEmployee: !this.state.CreateEmployee  
-        });  
-         }  
-    editEmployeePopup() {  
-    this.setState({  
-        editEmployee: !this.state.editEmployee  
-    });  
-        }  
-    deleteEmployeePopup(id) {  
+        });  }  
 
+    editEmployeePopup(id) {  
+    this.setState({  
+        editEmployee: !this.state.editEmployee  ,
+        id:id
+
+    });  }
+
+    deleteEmployeePopup(id) {  
         this.setState({  
-            deleteEmployee: !this.state.deleteEmployee  
-        });  
-                }  
+            deleteEmployee: !this.state.deleteEmployee ,
+            id:id
+        });
+    }  
     
     render(){
-        const { employee } = this.state
-
+        const { employee } = this.state || []
+        const team = ['','Mobile','FrontEnd','BackEnd']
     return(
 
     <>
@@ -66,16 +66,17 @@ class ListEmployee extends Component {
     </thead>
     <tbody >
         {employee.map((dado,i) => {
+            
             return(
-            <tr >
+            <tr key={dado.id}>
             <td>{i+1}</td>
             <td>{dado.name}</td>
             <td> {dado.email}</td>
-            <td>{dado.startDate}</td>
-            <td>{dado.team}</td>
+            <td>{dado.start_date}</td>
+            <td>{team[dado.team]}</td>
             <td>
-            <button className="btn btn-outline-primary" onClick={this.editEmployeePopup.bind(this)}>edit</button>
-            <button className="btn btn-outline-danger" onClick={this.deleteEmployeePopup.bind(this,i)}>delete</button></td>
+            <button className="btn btn-outline-primary" onClick={this.editEmployeePopup.bind(this,dado.id)}>edit</button>
+            <button className="btn btn-outline-danger" onClick={this.deleteEmployeePopup.bind(this,dado.id)}>delete</button></td>
             </tr>)})}
     </tbody>
     </table>
@@ -85,7 +86,7 @@ class ListEmployee extends Component {
 
 {this.state.editEmployee ?  
 <EditEmployee  
-          text='Click "Close Button" to hide popup'  
+        id={this.state.id}
           closePopup={this.editEmployeePopup.bind(this)}  
 />  
 : null  
@@ -93,14 +94,16 @@ class ListEmployee extends Component {
 
 {
     this.state.CreateEmployee ?
-    <NewEmployee />:null
+    <NewEmployee
+    
+    closePopup={this.createEmployeePopup.bind(this)}  />:null
 }
 
 {   
     
      this.state.deleteEmployee ?
     <ConfirmMessage 
-        id = '1'
+        id = {this.state.id}
         closePopup={this.deleteEmployeePopup.bind(this)}  />:null
 }
 </div> 

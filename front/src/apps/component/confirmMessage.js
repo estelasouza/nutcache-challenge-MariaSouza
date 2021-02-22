@@ -1,23 +1,26 @@
 import React from 'react';  
 import './style.css';  
+import NultemployeeService from '../service/nultemployee'
 
 class ConfirmMessage extends React.Component {  
-    delete(pros){
-        console.log('aqui')
-        console.log(pros)
+    async delete(){
+        await NultemployeeService.delete(this.props.id)
+        alert('deletado')
+        document.location = '/home'
     }
-  render() {  
-return (  
-<div className='container popup color'>  
+    render() {  
 
-    <h1 className="center" >Você tem certeza que quer apagar?</h1>  
-    <div className="center d-grid gap-2 col-6 mx-auto">
+    return (  
+    <div className='container popup color'>  
 
-    <button className="btn btn-outline-danger " onClick={this.delete(this.props.id)}>Yes</button>  
-    <button className="btn btn-outline-primary" onClick={this.props.closePopup}>No</button>  
-    </div>
+        <h1 className="center" >Você tem certeza que quer apagar?</h1>  
+        <div className="center d-grid gap-2 col-6 mx-auto">
 
-</div>  
+        <button className="btn btn-outline-danger " onClick={this.delete.bind(this)}>Yes</button>  
+        <button className="btn btn-outline-primary" onClick={this.props.closePopup}>No</button>  
+        </div>
+
+    </div>  
 
 );  
 }  

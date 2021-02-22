@@ -4,23 +4,20 @@ import NultemployeeService from '../service/nultemployee'
 
 class EditEmployee extends React.Component {  
 
-    // async componentDidMount(){
-    //     // const id =this.props.match.params.id
-    //     console.log('to aq')
-    //     const  Edit  = await NultemployeeService.put()
-    //     console.log(Edit.data)
-    //     // this.setState({empresa:Home.data[0]})
-// }
-
 
 constructor(props){
         super(props);
         this.state = {}
-        
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
+    async componentDidMount(){
+        const employee = await NultemployeeService.getId(this.props.id)
+        await this.setState({employee: employee.data})
+        // console.log(this.state.employee)
+
+    }
     handleChange(event) {
 
         const target = event.target;
@@ -29,27 +26,22 @@ constructor(props){
             { 
                 [name]: event.target.value,                
             }
-            )
-        
-        
+            )      
     }
-    handleSubmit(event) {
+    
+    async handleSubmit(event) {
         event.preventDefault()
         const data = this.state
         console.log(data)
-
-          
+        // await NultemployeeService.put()
         }
-        
-    
-    
 
   render() {
 
 
-      let label = ['name','email','birthday','cpf']
-      let team = [ 'mobile', 'FrontEnd', 'BackEnd','']
-      let gender = ['woman','man','other']
+      let label = ['name','email','cpf']
+      let team = [ 'team','Mobile', 'FrontEnd', 'BackEnd']
+      let gender = ['gender','Woman','Man','Other']
 
 
       return(
@@ -60,13 +52,13 @@ constructor(props){
               return( 
                   <div className="mb-3 d1">
                    <label className="form-label">{nameLabel}</label>
-                   <input  onChange={event => this.handleChange(event)} name={nameLabel} id={nameLabel} type="text"  />
+                   <input  required onChange={event => this.handleChange(event)} name={nameLabel} placeholder={nameLabel} id={nameLabel} type="text"  />
                    </div>
                 )
             })
        }
 
-          <select name="team" value={this.state.value} onChange={this.handleChange} >
+          <select name="team" required value={this.state.value} onChange={this.handleChange} >
     {team.map(x=>{
     return( 
         <option value={x}>{x}</option>
@@ -74,21 +66,33 @@ constructor(props){
     })}
     </select>
     
-    <div className="mb-3">
+    <select name="gender" className="mb-3">
         {
             gender.map(g=>{
-        return(<div >
-        <input onChange={event => this.handleChange(event)}  type="checkbox" className="form-check-input" name={g} id={g}/>
-        <label>{g}</label>
-        </div>
-)
+        return(
+        <option onChange={event => this.handleChange(event)} value={g}>{g}</option>
+        )
             })
         }
-    </div>
-        <button type="submit" value="Submit">submit</button>
+    </select>
+    <div>
 
-    <button className="btn btn-outline-success" onClick={this.props.closePopup}>Save</button>  
+
+    <label className="form-label">Birthday</label>
+
+    <input required type="date" name='birth_day' onChange={event => this.handleChange(event)} required />
+
+    <label  className="form-label" >Start Date</label>
+
+    <input required type="date" name='start_date' onChange={event => this.handleChange(event)} required />
+    </div>
+    <div>
+
+
+        <button type="submit" value="Submit" className="btn btn-outline-success">Submit</button>
+
     <button className="btn btn-outline-primary" onClick={this.props.closePopup}>Close</button>  
+    </div>
         </form>
       </div>
 );  

@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'corsheaders',
+    'corsheaders',
     'rest_framework',
     'employee'
 ]
@@ -44,8 +44,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+CORS_ORIGIN_ALLOW_ALL = False
+
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
+       'http://localhost:3000',
 )
 ROOT_URLCONF = 'back.urls'
 
@@ -115,14 +117,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# Static
+
+import os
+
+
+from dj_database_url import parse as db_url
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def base_dir_join(*args):
+    return os.path.join(BASE_DIR, *args)
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (base_dir_join('../frontend'),)
 
+STATIC_ROOT = base_dir_join("staticfiles")
 
-from corsheaders.defaults import default_headers
-CORS_ALLOW_HEADERS = default_headers + (
-    'Cache-Control', 'If-Modified-Since',
-)
-CSRF_TRUSTED_ORIGINS = (
-    '*',
-)
-CORS_ALLOW_ALL_ORIGINS = True
+# from corsheaders.defaults import default_headers
+# CORS_ALLOW_HEADERS = default_headers + (
+#     'Cache-Control', 'If-Modified-Since',
+# )
+# CSRF_TRUSTED_ORIGINS = (
+#     '*',
+# )
+# CORS_ALLOW_ALL_ORIGINS = True
