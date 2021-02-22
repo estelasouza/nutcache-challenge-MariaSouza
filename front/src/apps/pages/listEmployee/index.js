@@ -4,7 +4,7 @@ import "./style.css"
 
 import NultemployeeService from '../../service/nultemployee'
 
-import EditEmployee from '../../component/editEmployee';  
+import EditEmployee from '../editEmployee/index';  
 import NewEmployee from '../newEmployee/index'
 import ConfirmMessage from '../../component/confirmMessage'
 

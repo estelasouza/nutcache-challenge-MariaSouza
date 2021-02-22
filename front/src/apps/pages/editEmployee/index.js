@@ -1,6 +1,6 @@
 import React from 'react';  
 import './style.css';  
-import NultemployeeService from '../service/nultemployee'
+import NultemployeeService from '../../service/nultemployee'
 
 class EditEmployee extends React.Component {  
 
@@ -27,13 +27,13 @@ constructor(props){
         this.setState({
             id: employee.data.id,
             email: employee.data.email,
+            name: employee.data.name,
             cpf: employee.data.cpf,
             start_date: employee.data.start_date,
             birth_day: employee.data.birth_day,
             team: employee.data.team,
             gender: employee.data.gender
         })
-        console.log(employee.data)
        
        
     }
@@ -55,7 +55,7 @@ constructor(props){
         const id = this.props.id
 
         await NultemployeeService.put(id,data)
-        alert('Editado com sucesso employee add!')
+        alert('Sucess edit employee!')
         Array.from(document.querySelectorAll("input")).forEach(
             input => (input.value = "")
           );
@@ -63,9 +63,6 @@ constructor(props){
             itemvalues: [{}]
           });        
         document.location = '/home'
-        console.log(data,'aqui a resposta')
-        
-        // await NultemployeeService.put()
         }
 
   render() {
@@ -82,7 +79,7 @@ constructor(props){
       <div className="mb-3 d1">
        <label className="form-label">Name</label>
            
-       <input required onChange={event => this.handleChange(event)}  value={name} name="name" />
+       <input required onChange={event => this.handleChange(event)}  value={[name]} name="name" />
        </div>
        <div className="mb-3 d1">
        <label className="form-label">Email</label>

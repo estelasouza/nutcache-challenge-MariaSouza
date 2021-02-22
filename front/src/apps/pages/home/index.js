@@ -9,10 +9,10 @@ class Home extends Component {
         <>
 
         <h1 className="home"> Home page</h1>
-        <h3 className="home"> Welcome </h3>
+        <h3 className="home"> Welcome to challenge Nutcache </h3>
         <div className="container">
             <div className="d-grid gap-2 col-6 mx-auto">
-            <a href="/home" className="btn btn-outline-dark">Acess list </a>
+            <a href="/home" className="btn btn-outline-dark">Tap here to acess list </a>
             </div>
         </div>
 
